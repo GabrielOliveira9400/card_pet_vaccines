@@ -1,0 +1,105 @@
+import 'package:card_pet_vaccines/ui/android/page/RegisterVacines.page.dart';
+import 'package:card_pet_vaccines/ui/android/widget/HeaderVaccines.widget.dart';
+import 'package:flutter/material.dart';
+import 'package:card_pet_vaccines/models/vaccines.model.dart';
+import 'package:card_pet_vaccines/ui/android/widget/ListVaccines.widget.dart';
+
+import '../../repositories/vaccine.repository.dart';
+
+class PetDetailPage extends StatefulWidget {
+  final int petId;
+
+  PetDetailPage({required this.petId});
+  @override
+  _PetDetailPageState createState() => _PetDetailPageState();
+}
+
+class _PetDetailPageState extends State<PetDetailPage> {
+  late VaccinesRepository _vaccinesRepository;
+  List<Vaccines> _vacinas = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadData();
+  }
+
+  Future<void> _loadData() async {
+    _vaccinesRepository = VaccinesRepository();
+    final int petId = widget.petId;
+    List<Vaccines> vaccines = await _vaccinesRepository.getVaccinesByPetId(petId);
+    setState(() {
+      _vacinas = vaccines;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            icon: Icon(Icons.edit),
+            onPressed: () {
+              // Implemente a lógica para edição do pet
+            },
+          ),
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => RegisterVacinePage(petIdVaccine: widget.petId),
+                ),
+              );
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
+      ),
+      body: _vacinas == null
+          ? Center(
+        child: CircularProgressIndicator(), // Mostra um indicador de carregamento enquanto os dados são carregados
+      )
+          : SingleChildScrollView(
+        child: Container(
+          child: Column(
+            children: [
+              HeaderVaccines(),
+              Divider(
+                height: 20.0,
+                color: Colors.grey,
+                thickness: 2.0,
+                indent: 16.0,
+                endIndent: 16.0,
+              ),
+              Text(
+                'Vacinas',
+                style: TextStyle(
+                  fontSize: 24.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              _buildListaVacinas(), // Suponho que você tenha um método para construir a lista de vacinas
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+
+  Widget _buildListaVacinas() {
+    return Container(
+      padding: EdgeInsets.all(16.0),
+      child: Column(
+        children: <Widget>[
+          for (Vaccines vacina in _vacinas)
+            ListVaccines(vacina: vacina),
+        ],),
+    );
+  }
+}
+
+
+
