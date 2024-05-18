@@ -19,7 +19,7 @@ class _ListPetsWidgetState extends State<ListPetsWidget> {
       margin: const EdgeInsets.all(8.0),
       width: 70.0,
       decoration: BoxDecoration(
-        color: const Color(0xFFF8F2F7),
+        color: Colors.amber.withOpacity(0.3),
         borderRadius: BorderRadius.circular(18.0),
       ),
       child: Column(
@@ -51,8 +51,7 @@ class _ListPetsWidgetState extends State<ListPetsWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final idade = 5;
-        //DateTime.now().year - int.parse(widget.pet.birthDate!.split('/')[2]);
+    final idade = getAge(widget.pet.birthDate!);
     return Slidable(
       endActionPane: ActionPane(
         motion: const DrawerMotion(),
@@ -142,6 +141,7 @@ class _ListPetsWidgetState extends State<ListPetsWidget> {
                   ),
                   const SizedBox(height: 2.0),
                   Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: <Widget>[
                       _buildInfoCard('Idade', idade.toString()),
                       _buildInfoCard(
@@ -156,5 +156,16 @@ class _ListPetsWidgetState extends State<ListPetsWidget> {
         ),
       ),
     );
+  }
+
+  int getAge(String birthDate) {
+    DateTime aniversario = DateTime.parse(birthDate);
+    //print(DateTime.now().difference(aniversario).inDays ~/ 365);
+    //print(aniversario);
+    int meses = DateTime.now().difference(aniversario).inDays ~/ 30;
+    if (meses < 12) {
+      return meses;
+    }
+    return DateTime.now().difference(aniversario).inDays ~/ 365;
   }
 }

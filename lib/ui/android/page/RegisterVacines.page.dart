@@ -162,7 +162,7 @@ class _RegisterVacinePageState extends State<RegisterVacinePage> {
         petId: 1,
         description: description,
         date: date,
-        validade: validade,
+        validade: int.parse(validade),
       ));
       Navigator.pop(context);
     }

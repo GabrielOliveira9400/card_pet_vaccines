@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../../helpers/syncDatabase.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -18,7 +21,7 @@ class ProfilePage extends StatelessWidget {
             children: [
               const CircleAvatar(
                 radius: 50,
-                backgroundImage: NetworkImage('https://example.com/photo.jpg'), // Insira o URL da sua foto aqui
+                //backgroundImage: NetworkImage('https://example.com/photo.jpg'), // Insira o URL da sua foto aqui
               ),
               const SizedBox(height: 20),
               const Text(
@@ -47,6 +50,33 @@ class ProfilePage extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 40),
+              ListView(
+                shrinkWrap: true,
+                children: [
+                  ListTile(
+                    title: const Text('Meus Pets'),
+                    trailing: const Icon(Icons.pets),
+                    onTap: () {
+                      // Implemente aqui a lógica para navegar para a tela de Meus Pets
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Configurações'),
+                    trailing: const Icon(Icons.settings),
+                    onTap: () {
+                      // Implemente aqui a lógica para navegar para a tela de Configurações
+                    },
+                  ),
+                  ListTile(
+                    title: const Text('Sincronizar Dados'),
+                    trailing: const Icon(Icons.sync),
+                    onTap: () {
+                      sendDataToBackend();
+                    },
+                  ),
+                ],
+              ),
+              const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () {
                   // Implemente aqui a lógica para sair do aplicativo
