@@ -1,4 +1,5 @@
 import 'package:card_pet_vaccines/repositories/pet.repository.dart';
+import 'package:card_pet_vaccines/ui/android/Page/Home.page.dart';
 import 'package:card_pet_vaccines/ui/android/Page/Login.page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
@@ -23,16 +24,16 @@ class MyApp extends StatelessWidget {
         ? const CupertinoApp(
             title: 'Card Pet Vaccines',
             theme: CupertinoThemeData(
-              primaryColor: Colors.pink,
+              primaryColor: Colors.green,
             ),
-            home: LoginPage(),
+            home: BottomAppBarDemo(),
           )
         : MaterialApp(
             title: 'Card Pet Vaccines',
             theme: ThemeData(
-              primarySwatch: Colors.pink,
+              primarySwatch: Colors.green,
             ),
-            home: const LoginPage(),
+            home: const BottomAppBarDemo(),
           );
   }
 }

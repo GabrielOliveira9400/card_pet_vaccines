@@ -10,6 +10,7 @@ class ListVaccines extends StatefulWidget {
 }
 
 class _ListVaccinesState extends State<ListVaccines> {
+
   @override
   Widget build(BuildContext context) {
       return Container(
@@ -17,7 +18,7 @@ class _ListVaccinesState extends State<ListVaccines> {
         padding: EdgeInsets.all(16.0),
         margin: EdgeInsets.only(bottom: 4.0),
         decoration: BoxDecoration(
-          color: Colors.grey.withOpacity(0.1),
+          color: Colors.green.withOpacity(0.1),
           borderRadius: BorderRadius.circular(8.0),
         ),
         child: Column(
@@ -39,7 +40,7 @@ class _ListVaccinesState extends State<ListVaccines> {
             ),
             SizedBox(height: 8.0),
             Text(
-              'Meses de validade: ${widget.vacina.validade}',
+              'Meses de validade: ${widget.vacina.validade.toString()}',
               style: TextStyle(
                 fontSize: 16.0,
               ),

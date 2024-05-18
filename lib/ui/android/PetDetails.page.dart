@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:card_pet_vaccines/models/vaccines.model.dart';
 import 'package:card_pet_vaccines/ui/android/widget/ListVaccines.widget.dart';
 
+import '../../models/pet.model.dart';
+import '../../repositories/pet.repository.dart';
 import '../../repositories/vaccine.repository.dart';
 
 class PetDetailPage extends StatefulWidget {
@@ -16,7 +18,9 @@ class PetDetailPage extends StatefulWidget {
 
 class _PetDetailPageState extends State<PetDetailPage> {
   late VaccinesRepository _vaccinesRepository;
+  late PetRepository _petRepository;
   List<Vaccines> _vacinas = [];
+  late Pet _pet;
 
   @override
   void initState() {
@@ -26,11 +30,15 @@ class _PetDetailPageState extends State<PetDetailPage> {
 
   Future<void> _loadData() async {
     _vaccinesRepository = VaccinesRepository();
+    _petRepository = PetRepository();
     final int petId = widget.petId;
     List<Vaccines> vaccines = await _vaccinesRepository.getVaccinesByPetId(petId);
+    final Pet pet = await _petRepository.getPetById(petId);
     setState(() {
       _vacinas = vaccines;
+      _pet = pet;
     });
+    print(_vacinas);
   }
 
   @override
@@ -39,7 +47,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
       appBar: AppBar(
         actions: [
           IconButton(
-            icon: Icon(Icons.edit),
+            icon: Icon(Icons.edit, color: Colors.amber),
             onPressed: () {
               // Implemente a lógica para edição do pet
             },
@@ -53,7 +61,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
                 ),
               );
             },
-            icon: Icon(Icons.add),
+            icon: Icon(Icons.add, color: Colors.blue),
           ),
         ],
       ),
@@ -65,7 +73,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
         child: Container(
           child: Column(
             children: [
-              HeaderVaccines(),
+              HeaderVaccines(pet: _pet),
               Divider(
                 height: 20.0,
                 color: Colors.grey,
@@ -94,6 +102,7 @@ class _PetDetailPageState extends State<PetDetailPage> {
       padding: EdgeInsets.all(16.0),
       child: Column(
         children: <Widget>[
+          //print(_vacinas),
           for (Vaccines vacina in _vacinas)
             ListVaccines(vacina: vacina),
         ],),

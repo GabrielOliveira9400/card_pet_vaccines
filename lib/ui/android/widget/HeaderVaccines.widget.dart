@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+import '../../../models/pet.model.dart';
+
 class HeaderVaccines extends StatefulWidget {
-  const HeaderVaccines({super.key});
+  final Pet pet;
+  const HeaderVaccines({super.key, required this.pet});
 
   @override
   State<HeaderVaccines> createState() => _HeaderVaccinesState();
@@ -10,20 +13,21 @@ class HeaderVaccines extends StatefulWidget {
 class _HeaderVaccinesState extends State<HeaderVaccines> {
   @override
   Widget build(BuildContext context) {
+      int age = getAge(widget.pet.birthDate!);
       return Container(
-        padding: EdgeInsets.all(16.0),
+        padding: EdgeInsets.only(left: 16.0, right: 16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Totó',
+              'Nome: ${widget.pet.name}',
               style: TextStyle(
                 fontSize: 24.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
             Text(
-              'Bernese Mountain Dog',
+              '${widget.pet.breed}',
               style: TextStyle(
                 fontSize: 16.0,
               ),
@@ -46,7 +50,7 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
                   width: 70.0,
                   height: 70.0,
                   decoration: BoxDecoration(
-                    color: Colors.amber.withOpacity(0.2),
+                    color: Colors.green.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Column(
@@ -66,7 +70,7 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
                         ),
                       ),
                       Text(
-                        '2 Meses',
+                        '$age ${age == 1 ? 'ano' : 'anos'}',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w400,
@@ -97,8 +101,8 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
                       ),
                       Center(
                         child: Text(
-                          'Macho',
-                          style: TextStyle(
+                          '${widget.pet.gender}',
+                          style: const TextStyle(
                             fontSize: 16.0,
                             fontWeight: FontWeight.w400,
                           ),
@@ -112,7 +116,7 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
                   width: 70.0,
                   height: 70.0,
                   decoration: BoxDecoration(
-                    color: Colors.amber.withOpacity(0.2),
+                    color: Colors.blue.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Column(
@@ -126,7 +130,7 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
                         ),
                       ),
                       Text(
-                        '4,5 Kg',
+                        '${widget.pet.weight.toString()}',
                         style: TextStyle(
                           fontSize: 16.0,
                           fontWeight: FontWeight.w400,
@@ -141,4 +145,14 @@ class _HeaderVaccinesState extends State<HeaderVaccines> {
         ),
       );
     }
+  int getAge(String birthDate) {
+    DateTime aniversario = DateTime.parse(birthDate);
+    //print(DateTime.now().difference(aniversario).inDays ~/ 365);
+    //print(aniversario);
+    int meses = DateTime.now().difference(aniversario).inDays ~/ 30;
+    if (meses < 12) {
+      return meses;
+    }
+    return DateTime.now().difference(aniversario).inDays ~/ 365;
+  }
   }

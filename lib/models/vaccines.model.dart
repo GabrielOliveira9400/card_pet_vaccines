@@ -4,7 +4,7 @@ class Vaccines {
   String? name;
   String? description;
   String? date;
-  String? validade;
+  int? validade;
 
   Vaccines(
       {this.id,

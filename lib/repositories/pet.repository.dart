@@ -42,4 +42,9 @@ class PetRepository extends ChangeNotifier {
     );
     await _getPets();
   }
+
+  getPetById(int id) async {
+    db = (await DB.instance.database)!;
+    return Pet.fromJson((await db.query('pets', where: 'id = ?', whereArgs: [id]))[0]);
+  }
 }

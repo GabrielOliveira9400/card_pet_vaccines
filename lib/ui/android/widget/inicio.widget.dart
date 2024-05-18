@@ -1,3 +1,6 @@
+import 'package:card_pet_vaccines/ui/android/page/ListPets.page.dart';
+import 'package:card_pet_vaccines/ui/android/page/Notification.page.dart';
+import 'package:card_pet_vaccines/ui/android/page/RegisterPets.page.dart';
 import 'package:flutter/material.dart';
 import '../page/VaccineCat.page.dart';
 import '../page/VacinaPet.page.dart';
@@ -19,7 +22,7 @@ class _InicioWidgetState extends State<InicioWidget> {
                 Container(
                   padding: const EdgeInsets.all(20.0),
                   decoration: BoxDecoration(
-                    color: Colors.amber[100],
+                    color: Colors.green[100],
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                   child: Column(
@@ -35,21 +38,36 @@ class _InicioWidgetState extends State<InicioWidget> {
                         children: [
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: const Icon(Icons.add),color: Colors.red,),
+                              IconButton(onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => RegisterPetScreen(1)),
+                                );
+                              }, icon: const Icon(Icons.add),color: Colors.red,),
                               const Text('Adicionar Pet', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: const Icon(Icons.pets),color: Colors.amber,),
+                              IconButton(onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => ListPets()),
+                                );
+                              }, icon: const Icon(Icons.pets),color: Colors.amber,),
                               const Text('Pets', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             ],
                           ),
                           Column(
                             children: [
-                              IconButton(onPressed: (){}, icon: const Icon(Icons.notifications),color: Colors.blue,),
+                              IconButton(onPressed: (){
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(builder: (context) => NotificationPage()),
+                                );
+                              }, icon: const Icon(Icons.notifications),color: Colors.blue,),
                               const Text('Notificações', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                               ),
                             ],
@@ -62,7 +80,7 @@ class _InicioWidgetState extends State<InicioWidget> {
                 const SizedBox(height: 20),
                 const Align(
                   alignment: Alignment.centerLeft,
-                    child: Text('Links Úteis:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    child: Text('Informações Úteis:', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
                 ),
                 const SizedBox(height: 20),
