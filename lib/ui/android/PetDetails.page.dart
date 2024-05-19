@@ -7,6 +7,7 @@ import 'package:card_pet_vaccines/ui/android/widget/ListVaccines.widget.dart';
 import '../../models/pet.model.dart';
 import '../../repositories/pet.repository.dart';
 import '../../repositories/vaccine.repository.dart';
+import './page/EditPets.page.dart';
 
 class PetDetailPage extends StatefulWidget {
   final int petId;
@@ -49,7 +50,13 @@ class _PetDetailPageState extends State<PetDetailPage> {
           IconButton(
             icon: Icon(Icons.edit, color: Colors.amber),
             onPressed: () {
-              // Implemente a lógica para edição do pet
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EditPetScreen(1, widget.petId),
+                ),
+              );
+              _loadData();
             },
           ),
           IconButton(

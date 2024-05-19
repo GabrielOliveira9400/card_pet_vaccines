@@ -47,4 +47,15 @@ class PetRepository extends ChangeNotifier {
     db = (await DB.instance.database)!;
     return Pet.fromJson((await db.query('pets', where: 'id = ?', whereArgs: [id]))[0]);
   }
+
+  savePet(Pet updatedPet) async {
+    await db.update(
+      'pets',
+      updatedPet.toJson(),
+      where: 'id = ?',
+      whereArgs: [updatedPet.id],
+      conflictAlgorithm: ConflictAlgorithm.replace,
+    );
+    await _getPets();
+  }
 }
