@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:card_pet_vaccines/models/vaccines.model.dart';
 import 'package:card_pet_vaccines/ui/android/widget/ListVaccines.widget.dart';
 
-import '../../models/pet.model.dart';
-import '../../repositories/pet.repository.dart';
-import '../../repositories/vaccine.repository.dart';
+import '../../../models/pet.model.dart';
+import '../../../repositories/pet.repository.dart';
+import '../../../repositories/vaccine.repository.dart';
 import './page/EditPets.page.dart';
 
 class PetDetailPage extends StatefulWidget {

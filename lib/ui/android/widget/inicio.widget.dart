@@ -97,47 +97,44 @@ class _InicioWidgetState extends State<InicioWidget> {
                       ),
                     ],
                   ),
-                  child: Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/viagemPet');
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/viagemPet.jpeg',
-                                fit: BoxFit.cover),
-                                const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/viagemPet');
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/viagemPet.jpeg',
+                              fit: BoxFit.cover),
+                              const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        Expanded(
-                          flex: 1,
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => VaccinePage()),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/vacina.jpeg',
-                                fit: BoxFit.cover),
-                                const Text('Vacinas para Cães', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        flex: 1,
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => VaccinePage()),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/vacina.jpeg',
+                              fit: BoxFit.cover),
+                              const Text('Vacinas para Cães', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 const SizedBox(height: 20),
@@ -146,46 +143,43 @@ class _InicioWidgetState extends State<InicioWidget> {
                     color: Colors.amber[100],
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(builder: (context) => VaccineCatPage()),
-                              );
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/gato.jpeg',
-                                fit: BoxFit.cover
-                                ),
-                                const Text('Vacina para Gatos', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => VaccineCatPage()),
+                            );
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/gato.jpeg',
+                              fit: BoxFit.cover
+                              ),
+                              const Text('Vacina para Gatos', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/cuidadosPet');
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/husky.png'),
-                                const Text('Cuidados com seus Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/cuidadosPet');
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/husky.png'),
+                              const Text('Cuidados com seus Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
                 SizedBox(height: 20),
@@ -194,41 +188,38 @@ class _InicioWidgetState extends State<InicioWidget> {
                     color: Colors.amber[100],
                     borderRadius: BorderRadius.circular(8.0),
                   ),
-                  child: Expanded(
-                    flex: 1,
-                    child: Row(
-                      children: [
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/viagemPet');
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/viagemPet.jpeg'),
-                                const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/viagemPet');
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/viagemPet.jpeg'),
+                              const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                        const SizedBox(width: 20),
-                        Expanded(
-                          child: GestureDetector(
-                            onTap: () {
-                              Navigator.pushNamed(context, '/viagemPet');
-                            },
-                            child: Column(
-                              children: [
-                                Image.asset('assets/images/viagemPet.jpeg'),
-                                const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                      ),
+                      const SizedBox(width: 20),
+                      Expanded(
+                        child: GestureDetector(
+                          onTap: () {
+                            Navigator.pushNamed(context, '/viagemPet');
+                          },
+                          child: Column(
+                            children: [
+                              Image.asset('assets/images/viagemPet.jpeg'),
+                              const Text('Viagem com Pets', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 ),
               ],
