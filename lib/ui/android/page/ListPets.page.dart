@@ -1,4 +1,4 @@
-import 'package:card_pet_vaccines/ui/android/PetDetails.page.dart';
+import 'package:card_pet_vaccines/ui/android/page/PetDetails.page.dart';
 import 'package:flutter/material.dart';
 import 'package:card_pet_vaccines/models/pet.model.dart';
 import 'package:card_pet_vaccines/ui/android/widget/ListPets.widget.dart';

@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:provider/provider.dart';
 import '../../../repositories/pet.repository.dart';
 import '../../../models/pet.model.dart';
@@ -22,6 +25,8 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
   final listGener = ['Macho', 'Fêmea'];
   DateTime _dataNascimentoSelecionada = DateTime.now();
   String genero = 'Macho';
+  XFile? _image;
+  late String image;
 
   @override
   Widget build(BuildContext context) {
@@ -45,6 +50,38 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
                 fontSize: 16.0,
                 fontWeight: FontWeight.bold,
                 color: Colors.grey,
+              ),
+            ),
+            const SizedBox(height: 15.0),
+            GestureDetector(
+              onTap: () {
+                selecionarFoto();
+              },
+              child: Container(
+                width: 200,
+                height: 200,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  image: _image != null
+                      ? DecorationImage(
+                    image: FileImage(File(_image!.path)),
+                    fit: BoxFit.cover,
+                  )
+                      : null,
+                  color: Colors.grey[300], // Background color when no image is selected
+                ),
+                child: _image == null
+                    ? Center(
+                  child: Text(
+                    'Selecione uma imagem',
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                )
+                    : null,
               ),
             ),
             const SizedBox(height: 15.0),
@@ -222,6 +259,21 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
     }
   }
 
+  selecionarFoto() {
+    final ImagePicker _picker = ImagePicker();
+    try {
+      _picker.pickImage(source: ImageSource.gallery).then((file) {
+        if (file != null) {
+          setState(() {
+            image = file.path;
+          });
+        }
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
   void _registerPet(BuildContext context) {
     final PetRepository petRepository =
     Provider.of<PetRepository>(context, listen: false);
@@ -236,7 +288,7 @@ class _RegisterPetScreenState extends State<RegisterPetScreen> {
       gender: genero,
       weight: _pesoController.text,
       description: '',
-      picture: '',
+      picture: image,
       breed: _racaController.text,
       //vaccines: [],
     );
