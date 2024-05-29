@@ -50,4 +50,15 @@ class VaccinesRepository extends ChangeNotifier {
          'vaccines', where: 'petId = ?', whereArgs: [petId]);
      return vaccines.map((e) => Vaccines.fromJson(e)).toList();
    }
+
+  updateVaccine(Vaccines vaccine) async {
+    db = (await DB.instance.database)!;
+    await db.update(
+      'vaccines',
+      vaccine.toJson(),
+      where: 'id = ?',
+      whereArgs: [vaccine.id],
+    );
+    await _getVaccines();
+  }
 }
